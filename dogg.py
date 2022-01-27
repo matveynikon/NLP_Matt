@@ -49,6 +49,12 @@ for f in files:
 for i in range(len(cont)):
     for t in range(len(opinion)):
         if opinion[t] in str(cont[i]):
+            cont[i] = cont[i].replace("[", "")
+            cont[i] = cont[i].replace("]", "")
+            cont[i] = cont[i].replace("'", "")
+            cont[i] = cont[i].replace("/", "")
+            cont[i] = cont[i].replace('"', '')
+            cont[i] = cont[i].replace("\n", "")
             o2.append(cont[i])
             break
 
@@ -62,31 +68,37 @@ for f in files:
         with open("stfucunt/"+f) as file:
             g += 1        
             with open('stfucunt/'+str(f), 'r') as f:
-                #print(f.readlines())
                 rg = f.readlines()
-                for mf in range(len(rg)-1):
+                #print(rg)
+                for mf in range(len(rg)):
                     rg3 = rg[mf]
-                    for j in range(len(rg3)-1):
+                    rg3.split(".")
+                    for j in range(len(rg3)):
                         try:
                             rg3[j].split("?")
                         except:
                             print("k")
-                    for j in range(len(rg3)-1):
+                    for j in range(len(rg3)):
                         try:
                             rg3[j].split("!")
                         except:
                             print("k")
-                    for j in range(len(rg3)-1):
+                    for j in range(len(rg3)):
                         try:
                             rg3[j].split("...")
                         except:
                             print("k")
-                    #print(rg3)
                     cont2.append(str(rg3))
     
 for i in range(len(cont2)):
     for t in range(len(question)):
         if question[t] in str(cont2[i]):
+            cont2[i] = cont2[i].replace("[", "")
+            cont2[i] = cont2[i].replace("]", "")
+            cont2[i] = cont2[i].replace("'", "")
+            cont2[i] = cont2[i].replace("/", "")
+            cont2[i] = cont2[i].replace('"', '')
+            cont2[i] = cont2[i].replace("\n", "")
             o3.append(cont2[i])
             break
 
@@ -94,9 +106,9 @@ with open("text.csv", "w") as f:
     o3 = np.unique(o3)
     writer = csv.writer(f)
     writer.writerow(["type", "sample"]) 
-    for i in range(len(o3)):
-        writer.writerow(["Question", o3[i]])
     for i in range(len(o2)):
         writer.writerow(["Opinion/Belief", o2[i]])
+    for i in range(len(o3)):
+        writer.writerow(["Question", o3[i]])
 
 #pprint(cont)
